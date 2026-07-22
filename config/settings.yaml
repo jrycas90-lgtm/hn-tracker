@@ -1,0 +1,22 @@
+# Configuration for the Hacker News tracker.
+
+scraper:
+  base_url: "https://news.ycombinator.com"
+  # How many front-page listings to pull per run (each page = 30 stories).
+  pages: 1
+  # Seconds to wait between page requests (be polite to the server).
+  request_delay_seconds: 2
+  # Custom User-Agent so requests identify the tool clearly.
+  user_agent: "hn-tracker-bot/1.0 (https://github.com/jrycas90-lgtm/hn-tracker; educational portfolio project)"
+  # Retry behavior for transient network failures.
+  max_retries: 3
+  backoff_base_seconds: 2
+
+database:
+  path: "data/hn_tracker.db"
+
+logging:
+  path: "logs/pipeline.log"
+  level: "INFO"
+  max_bytes: 1000000
+  backup_count: 3

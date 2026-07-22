@@ -1,0 +1,40 @@
+name: Scheduled Scrape
+
+# Runs the pipeline automatically on a schedule using GitHub-hosted runners
+# (no server of your own required), then commits the updated database back
+# to the repo so the history accumulates run over run.
+
+on:
+  schedule:
+    # Every 6 hours. Cron is in UTC. Adjust as you like.
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}  # allows manually triggering a run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper pipeline
+        run: python src/pipeline.py
+
+      - name: Commit updated database and logs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/hn_tracker.db logs/pipeline.log
+          git diff --quiet --cached || git commit -m "Scheduled scrape: $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
