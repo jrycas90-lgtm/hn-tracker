@@ -1259,3 +1259,9 @@
 2026-09-14 12:18:17 | INFO     | hn_tracker | Inserted 30 story snapshots from page 1.
 2026-09-14 12:18:17 | INFO     | hn_tracker | Run complete. Inserted 30 rows this run (6300 total rows in database).
 2026-09-14 12:18:17 | INFO     | hn_tracker | === Pipeline run finished ===
+2026-09-14 21:40:20 | INFO     | hn_tracker | === Pipeline run started ===
+2026-09-14 21:40:20 | INFO     | hn_tracker | Fetching page 1: https://news.ycombinator.com
+2026-09-14 21:40:20 | INFO     | hn_tracker | Found 30 story rows in page.
+2026-09-14 21:40:20 | INFO     | hn_tracker | Inserted 30 story snapshots from page 1.
+2026-09-14 21:40:20 | INFO     | hn_tracker | Run complete. Inserted 30 rows this run (6330 total rows in database).
+2026-09-14 21:40:20 | INFO     | hn_tracker | === Pipeline run finished ===
